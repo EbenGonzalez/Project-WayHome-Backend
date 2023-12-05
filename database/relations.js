@@ -21,6 +21,13 @@ function addRelationsToModels() {
 
     Species.hasMany(Race)
     Race.belongsTo(Species)
+    
+    Pet.hasMany(History)
+    History.belongsTo(Pet)
+
+    Species.hasMany(Pet)
+    Pet.belongsTo(Species)
+
   } catch (error) {
     throw error
   }
