@@ -17,12 +17,12 @@ const {
 } = require("../middlewares/")
 
 router.get('/', checkAuth, checkAdmin, getAllHistories)
-router.get('/history/:id',checkAuth, checkAdmin, getOneHistory)
-router.get('/history/me', checkAuth, getOwnHistory)
-router.post('/history/me', checkAuth, createOwnHistory)
+router.get('/me', checkAuth, getOwnHistory)
+router.get('/:id',checkAuth, checkAdmin, getOneHistory)
 router.post('/', checkAuth, checkAdmin, createHistory)
-router.put('/me/:id', checkAuth, updateOwnHistory)
+router.post('/me', checkAuth, createOwnHistory)
 router.put('/:id', checkAuth, checkAdmin, updateHistory)
+router.put('/me/:id', checkAuth, updateOwnHistory)
 router.delete('/:id', checkAuth,checkAdmin, deleteHistory)
 
 module.exports = router
