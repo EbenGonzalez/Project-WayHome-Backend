@@ -36,7 +36,7 @@ const Pet = connection.define("pet", {
     allowNull: true
   },
   info: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: true
   }
 },

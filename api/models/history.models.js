@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const { connection } = require("../../database");
 
 const History = connection.define("history", {
- OwnerId: {
+ ownerId: {
     type: DataTypes.STRING,
     allowNull: true,
   },
