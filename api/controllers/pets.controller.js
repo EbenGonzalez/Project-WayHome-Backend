@@ -1,65 +1,84 @@
-const Pet = require('../models/pet')
+const Pet = require('../models/pet.models')
 
-async function getAllInfoPets(req, res) {
+async function getAllPets(req, res) {
   try {
-    const info = await Pet.findAll(
+    const pet = await Pet.findAll(
       {
         where: req.query
       })
-      if (info) {
-        return res.status(200).json(info)
-      } else {
-        return res.status(404).send("No hemos encontrado ");
-      }
+    if (pet) {
+      return res.status(200).json(pet)
+    } else {
+      return res.status(404).send("No hemos encontrado ninguna mascota ");
+    }
   } catch (error) {
     res.status(500).send(message.error)
-  } 
+  }
 }
 
-async function getOneInfoPet(req, res) {
+async function getOnePet(req, res) {
   try {
-    const info = await Pet.findByPk(req.params.id)
+    const pet = await Pet.findByPk(req.params.id)
 
-    if (info) {
-      return res.status(200).json(info)
+    if (pet) {
+      return res.status(200).json(pet)
     } else {
-      return res.status(404).send('Info not found')
+      return res.status(404).send('Mascota no encontrada')
     }
   } catch (error) {
     return res.status(500).send(error.message)
   }
 }
 
-async function createInfoPet(req, res) {
+async function createPet(req, res) {
   try {
     const pet = await Pet.findByPk(req.params.id)
     console.log(pet)
     const info = await Pet.create(req.body)
     await pet.setPet(info) //revisar, crea la info, pero no la añade al userID
-    return res.status(200).json({ message: 'Info created', info: info, pet: pet})
+    return res.status(200).json({ message: 'Info created', info: info, pet: pet })
   } catch (error) {
     return res.status(500).send(error.message)
   }
 }
 
-async function updateInfoPet(req, res) {
+async function updatePet(req, res) {
   try {
     const info = await Pet.update(req.body, {
       where: {
+        userId: res.locals.user.id,
         id: req.params.id
       }
     })
     if (info) {
-     return res.status(200).json({ message: `Info with ID ${req.params.id} has been updated`})
+      return res.status(200).json({ message: `La mascota con ID ${req.params.id} ha sido actualizada` })
     } else {
-      return res.status(404).send('Info not found')
+      return res.status(404).send('Mascota no encontrada')
     }
   } catch (error) {
     return res.status(500).send(error.message)
   }
 }
 
-async function deleteInfoPet(req, res) {
+async function updateOwnPet(req, res) {
+  try {
+    const user = await User.findOne({
+      where: {
+        id: res.locals.user.id
+      }
+    })
+    if (user) {
+      await user.update(req.body)
+      return res.status(200).json({ message: "User updated" })
+    } else {
+      return res.status(404).send('User not found')
+    }
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
+async function deletePet(req, res) {
   try {
     const info = await Pet.destroy({
       where: {
@@ -67,9 +86,9 @@ async function deleteInfoPet(req, res) {
       }
     })
     if (info) {
-      return res.status(200).json(`Info with ID ${req.params.id} deleted`)
+      return res.status(200).json(`La mascota con ID ${req.params.id} ha sido borrada.`)
     } else {
-      return res.status(404).send('Info not found')
+      return res.status(404).send('Mascota no encontrada')
     }
   } catch (error) {
     return res.status(500).send(error.message)
@@ -77,9 +96,9 @@ async function deleteInfoPet(req, res) {
 }
 
 module.exports = {
-getAllInfoPets,
-getOneInfoPet,
-createInfoPet,
-updateInfoPet,
-deleteInfoPet
+  getAllPets,
+  getOnePet,
+  createPet,
+  updatePet,
+  deletePet
 }
