@@ -46,7 +46,6 @@ async function updatePet(req, res) {
   try {
     const info = await Pet.update(req.body, {
       where: {
-        userId: res.locals.user.id,
         id: req.params.id
       }
     })
@@ -62,16 +61,17 @@ async function updatePet(req, res) {
 
 async function updateOwnPet(req, res) {
   try {
-    const user = await User.findOne({
+    const pet = await Pet.findOne({
       where: {
-        id: res.locals.user.id
+        userId: res.locals.user.id,
+        id: req.params.id
       }
     })
-    if (user) {
-      await user.update(req.body)
-      return res.status(200).json({ message: "User updated" })
+    if (pet) {
+      await pet.update(req.body)
+      return res.status(200).json({ message: "Mascota Actualizada" })
     } else {
-      return res.status(404).send('User not found')
+      return res.status(404).send('Mascota no encontrada')
     }
   } catch (error) {
     return res.status(500).send(error.message)
@@ -100,5 +100,6 @@ module.exports = {
   getOnePet,
   createPet,
   updatePet,
-  deletePet
+  deletePet,
+  updateOwnPet
 }

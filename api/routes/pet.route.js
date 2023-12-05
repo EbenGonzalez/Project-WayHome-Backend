@@ -5,14 +5,24 @@ const {
   getOnePet,
   createPet,
   updatePet,
+  updateOwnPet,
   deletePet
 } = require('../controllers/pets.controller')
 
+const {
+  checkAuth,
+  checkAdmin
+} = require("../middlewares/")
+
 router.get('/', getAllPets)
+//router.get('/me/:id', checkAuth, getOneOwnPet)
 router.get('/:id', getOnePet)
-router.post('/', createPet)
-router.put('/:id', updatePet)
-router.delete('/:id', deletePet)
+router.post('/', checkAuth, checkAdmin,  createPet)
+//router.post('/me', checkAuth, createOwnPet)
+router.put('/me/:id', checkAuth, updateOwnPet)
+router.put('/:id', checkAuth, checkAdmin, updatePet)
+//router.delete('/me/:id', checkAuth, deleteOwnPet)
+router.delete('/:id', checkAuth, checkAdmin, deletePet)
 
 
 module.exports = router

@@ -35,6 +35,7 @@ The Authentication flow for the application is:
 | ------ | --------------- | ----- | ----- | ------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------- |
 | GET    | /pets           | -     | -     | See All Pets        | `query params`                                                                                     | [{ pets }]                                   |
 | GET    | /pets/:petId    | -     | -     | See one Pet Info    |                                                                                                    | { pet }                                      |
+| GET    | /pets/me   | -     | -     | See all own Pet Info    |                                                                                                    | [{ pets }]                                      |
 | POST   | /pets/me        | YES   | user  | Create Own pet Info | `name`, `role`, `userId`, `character`, `gender`, `size`, `info`, `location`, `{ image }`, `raceId` | { pets }                                     |
 | POST   | /pets           | YES   | admin | Create one pet      | { body }                                                                                           | {user}                                       |
 | PUT    | /pets/me        | YES   | user  | Update own pet Info | { body }                                                                                           | {message: 'Your Pet Info have been updated'} |
@@ -61,7 +62,7 @@ The Authentication flow for the application is:
 
 | Method | Endpoint        | Token Required | Role  | Description                          | Post Params      | Returns                                             |
 | ------ | --------------- | -------------- | ----- | ------------------------------------ | ---------------- | --------------------------------------------------- |
-| GET    | /histories      | YES            | Admin | Get all ratings                      | `query params`   | [{history}]                                         |
+| GET    | /history     | YES            | Admin | Get all ratings                      | `query params`   | [{history}]                                         |
 | GET    | /history/me     | YES            | User  | Get all my histories                 |                  | [{history}]                                         |
 | GET    | /history/me/:Id | YES            | Admin | Get a specific own History           |                  | {history}                                           |
 | GET    | /history/:Id    | YES            | Admin | Get a specific History               |                  | {history}                                           |
