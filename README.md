@@ -64,7 +64,7 @@ The Authentication flow for the application is:
 | ------ | --------------- | -------------- | ----- | ------------------------------------ | ---------------- | --------------------------------------------------- |
 | GET    | /history     | YES            | Admin | Get all ratings                      | `query params`   | [{history}]                                         |
 | GET    | /history/me     | YES            | User  | Get all my histories                 |                  | [{history}]                                         |
-| GET    | /history/me/:Id | YES            | Admin | Get a specific own History           |                  | {history}                                           |
+| GET    | /history/me/:Id | YES            | User | Get a specific own History           |                  | {history}                                           |
 | GET    | /history/:Id    | YES            | Admin | Get a specific History               |                  | {history}                                           |
 | POST   | /history/me     | YES            | User  | Add a new history                    | `score, comment` | {history}                                           |
 | POST   | /history        | YES            | Admin | Add a new history                    | `score, comment` | {history}                                           |
