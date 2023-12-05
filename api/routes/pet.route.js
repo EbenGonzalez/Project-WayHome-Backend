@@ -3,7 +3,9 @@ const router = require('express').Router()
 const {
   getAllPets,
   getOnePet,
+  getOwnPets,
   createPet,
+  createOwnPet,
   updatePet,
   updateOwnPet,
   deletePet
@@ -15,10 +17,10 @@ const {
 } = require("../middlewares/")
 
 router.get('/', getAllPets)
-//router.get('/me/:id', checkAuth, getOneOwnPet)
+router.get('/me', checkAuth, getOwnPets)
 router.get('/:id', getOnePet)
-router.post('/', checkAuth, checkAdmin,  createPet)
-//router.post('/me', checkAuth, createOwnPet)
+router.post('/', checkAuth, checkAdmin, createPet)
+router.post('/me', checkAuth, createOwnPet)
 router.put('/me/:id', checkAuth, updateOwnPet)
 router.put('/:id', checkAuth, checkAdmin, updatePet)
 //router.delete('/me/:id', checkAuth, deleteOwnPet)

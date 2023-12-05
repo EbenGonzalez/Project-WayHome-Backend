@@ -31,6 +31,23 @@ async function getOnePet(req, res) {
   }
 }
 
+async function getOwnPets(req,res){
+	try {
+		const pet=await Pet.findAll({
+      where:{
+        userId:res.locals.user.id
+      }
+    })
+    if (pet.length!==0) {
+      return res.status(200).json({ message: 'Estas son tus mascotas', pet})
+    } else {
+      return res.status(404).send('Todavia no tienes ninguna mascota')
+    }
+	} catch (error) {
+		res.json(error)
+	}
+}
+
 async function createPet(req, res) {
   try {
     const pet = await Pet.findByPk(req.params.id)
@@ -48,10 +65,10 @@ async function createOwnPet(req, res) {
     const user = await User.findByPk(res.locals.user.id)
     if (user) {
       const pet = await Pet.create(req.body)
-      await user.setPet(pet)
+      await pet.setUser(user)
       return res.status(200).json({ message: 'Tu mascota ha sido añadida correctamente'})
     } else {
-      return res.status(404).send('Device not found')
+      return res.status(404).send('No se ha podido crear tu mascota')
     }
   } catch (error) {
     return res.status(500).send(error.message)
@@ -114,7 +131,9 @@ async function deletePet(req, res) {
 module.exports = {
   getAllPets,
   getOnePet,
+  getOwnPets,
   createPet,
+  createOwnPet,
   updatePet,
   deletePet,
   updateOwnPet
