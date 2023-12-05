@@ -1,4 +1,5 @@
 const Pet = require('../models/pet.models')
+const User = require('../models/users.models')
 
 async function getAllPets(req, res) {
   try {
@@ -37,6 +38,21 @@ async function createPet(req, res) {
     const info = await Pet.create(req.body)
     await pet.setPet(info) //revisar, crea la info, pero no la añade al userID
     return res.status(200).json({ message: 'Info created', info: info, pet: pet })
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
+async function createOwnPet(req, res) {
+  try {
+    const user = await User.findByPk(res.locals.user.id)
+    if (user) {
+      const pet = await Pet.create(req.body)
+      await user.setPet(pet)
+      return res.status(200).json({ message: 'Tu mascota ha sido añadida correctamente'})
+    } else {
+      return res.status(404).send('Device not found')
+    }
   } catch (error) {
     return res.status(500).send(error.message)
   }
