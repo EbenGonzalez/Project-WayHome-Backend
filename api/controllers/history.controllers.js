@@ -19,10 +19,10 @@ async function getAllHistories(req, res) {
 
 async function getOneHistory(req, res) {
   try {
-    const History = await History.findByPk(req.params.id)
+    const history = await History.findByPk(req.params.id)
 
-    if (History) {
-      return res.status(200).json(History)
+    if (history) {
+      return res.status(200).json(history)
     } else {
       return res.status(404).send('History not found')
     }
@@ -35,7 +35,7 @@ async function getOwnHistory(req, res) {
   try {
     const history = await History.findAll({
       where: {
-        receiver_id: res.locals.user.id,   
+        volunteersId: res.locals.user.id,   
       }
     })
     if (history) {
@@ -60,7 +60,7 @@ async function createHistory(req, res) {
     if (user) {
       const history = await History.create({
         ownerId: user.id,
-        score: req.body.message,
+        score: req.body.score,
         comments: req.body.comments,
         volunteersId: req.body.volunteersId,
         userId: req.body.volunteersId
@@ -83,9 +83,11 @@ async function createOwnHistory(req, res) {
         ownerId: user.id,
         score: req.body.score,
         volunteersId: req.body.volunteersId,
-        petId: pet.id
+        comments: req.body.comments,
+        petId: req.body.petId,
+        userId: user.id
       })
-      return res.status(200).json({ message: 'Yor history has been created' })
+      return res.status(200).json({ message: 'Your history has been created', history })
     } else {
       return res.status(404).send('Device not found')
     }
@@ -96,7 +98,7 @@ async function createOwnHistory(req, res) {
 
 async function updateHistory(req, res) {
   try {
-    const history = await history.update(req.body, {
+    const history = await History.update(req.body, {
       where: {
         id: req.params.id
       }
@@ -115,12 +117,12 @@ async function updateOwnHistory(req, res) {
   try {
     const history = await History.findOne({
       where: {
-        owner: res.locals.user.id,
+        ownerId: res.locals.user.id,
         id: req.params.id
       }
     })
     if (history) {
-      await History.update(req.body)
+      await history.update(req.body)
       return res.status(200).json({ message: 'Yor history has been updated :)' })
     } else {
       return res.status(404).send('History not found')
