@@ -3,12 +3,12 @@ const router = require('express').Router()
 const {
   getAllHistories,
   getOneHistory,
-  getOwnHistory,
   createHistory,
   createOwnHistory,
   updateHistory,
   updateOwnHistory,
   deleteHistory,
+  getOwnHistory,
 } = require("../controllers/history.controllers")
 
 const {
@@ -18,6 +18,7 @@ const {
 
 router.get('/', checkAuth, checkAdmin, getAllHistories)
 router.get('/me', checkAuth, getOwnHistory)
+router.get('/me/:id', checkAuth, getOneHistory)
 router.get('/:id',checkAuth, checkAdmin, getOneHistory)
 router.post('/', checkAuth, checkAdmin, createHistory)
 router.post('/me', checkAuth, createOwnHistory)
