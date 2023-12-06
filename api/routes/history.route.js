@@ -16,7 +16,7 @@ const {
   checkAdmin
 } = require("../middlewares/")
 
-router.get('/', checkAuth, checkAdmin, getAllHistories)
+router.get('/', checkAuth, getAllHistories)
 router.get('/me', checkAuth, getOwnHistory)
 router.get('/me/:id', checkAuth, getOneHistory)
 router.get('/:id',checkAuth, checkAdmin, getOneHistory)

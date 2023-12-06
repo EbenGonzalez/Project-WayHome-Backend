@@ -18,8 +18,8 @@ const {
   checkAdmin
 } = require("../middlewares/")
 
-router.get('/inbox/me', checkAuth, getOwnComment)
-router.get('/send/me', checkAuth, getOwnCommentAuthor)
+router.get('/inbox', checkAuth, getOwnComment)
+router.get('/send', checkAuth, getOwnCommentAuthor)
 router.get('/', checkAuth, checkAdmin, getAllComments)
 router.get('/:id',checkAuth, checkAdmin, getOneComment)
 router.post('/me', checkAuth, createOwnComment)

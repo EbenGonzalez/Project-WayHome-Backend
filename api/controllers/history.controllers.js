@@ -64,7 +64,7 @@ async function createHistory(req, res) {
         score: req.body.score,
         comments: req.body.comments,
         volunteersId: req.body.volunteersId,
-        userId: req.body.volunteersId
+        userId: user.id
       })
       return res.status(200).json({ message: 'History created' })
     } else {
