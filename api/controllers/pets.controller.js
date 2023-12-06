@@ -137,10 +137,9 @@ async function deleteOwnPet(req, res) {
       }
     })
     if (pet) {
-      await pet.update(req.body)
       return res.status(200).json({ message: "Tu mascota ha sido eliminada correctamente" })
     } else {
-      return res.status(404).send('Mascota no encontrada')
+      return res.status(404).send('No eres el dueño de esa mascota')
     }
   } catch (error) {
     return res.status(500).send(error.message)
