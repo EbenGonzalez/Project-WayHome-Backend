@@ -53,7 +53,6 @@ async function getOwnHistory(req, res) {
 
 //Falta un controlador GET	/history/me/:Id
 
-//revisar
 async function createHistory(req, res) {
   try {
     const user = await User.findByPk(res.locals.user.id)
@@ -74,7 +73,6 @@ async function createHistory(req, res) {
   }
 }
 
-//revisar
 async function createOwnHistory(req, res) {
   try {
     const user = await User.findByPk(res.locals.user.id)
