@@ -8,7 +8,8 @@ const {
   createOwnPet,
   updatePet,
   updateOwnPet,
-  deletePet
+  deletePet,
+  deleteOwnPet
 } = require('../controllers/pets.controller')
 
 const {
@@ -23,7 +24,7 @@ router.post('/', checkAuth, checkAdmin, createPet)
 router.post('/me', checkAuth, createOwnPet)
 router.put('/me/:id', checkAuth, updateOwnPet)
 router.put('/:id', checkAuth, checkAdmin, updatePet)
-//router.delete('/me/:id', checkAuth, deleteOwnPet)
+router.delete('/me/:id', checkAuth, deleteOwnPet)
 router.delete('/:id', checkAuth, checkAdmin, deletePet)
 
 
