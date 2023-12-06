@@ -1,5 +1,6 @@
 const History = require('../models/history.models')
 const User = require('../models/users.models')
+const { Op } = require('sequelize')
 
 async function getAllHistories(req, res) {
   try {
@@ -35,23 +36,24 @@ async function getOwnHistory(req, res) {
   try {
     const history = await History.findAll({
       where: {
-        volunteersId: res.locals.user.id,   
+        [Op.or]: [
+          { volunteersId: res.locals.user.id },
+          { ownerId: res.locals.user.id }
+        ]
       }
     })
     if (history) {
       return res.status(200).json({
-        message: 'This are all your history',
+        message: 'This is all your history',
         history: history
       })
     } else {
-      return res.status(404).send('You have not any history already')
+      return res.status(404).send('You do not have any history')
     }
   } catch (error) {
     res.json(error)
   }
 }
-
-//Falta un controlador GET	/history/me/:Id
 
 async function createHistory(req, res) {
   try {
