@@ -50,11 +50,8 @@ async function getOwnPets(req,res){
 
 async function createPet(req, res) {
   try {
-    const pet = await Pet.findByPk(req.params.id)
-    console.log(pet)
-    const info = await Pet.create(req.body)
-    await pet.setPet(info) //revisar, crea la info, pero no la añade al userID
-    return res.status(200).json({ message: 'Info created', info: info, pet: pet })
+    const pet = await Pet.create(req.body)
+    return res.status(200).json({ message: 'Mascota añadida correctamente', pet })
   } catch (error) {
     return res.status(500).send(error.message)
   }
