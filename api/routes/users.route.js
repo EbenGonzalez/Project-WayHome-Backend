@@ -17,7 +17,7 @@ const {
   checkAdmin
 } = require("../middlewares/")
 
-router.get('/', checkAuth, getAllUsers) 
+router.get('/', getAllUsers) 
 router.get('/me', checkAuth, getOwnProfile) 
 router.get('/:id', checkAuth, checkAdmin, getOneUser) /
 router.post('/', checkAuth, checkAdmin, createUser) 
