@@ -1,5 +1,6 @@
 const History = require('../models/history.models')
 const User = require('../models/users.models')
+const Pet = require('../models/pet.models')
 const { Op } = require('sequelize')
 
 async function getAllHistories(req, res) {
@@ -40,7 +41,8 @@ async function getOwnHistory(req, res) {
           { volunteersId: res.locals.user.id },
           { ownerId: res.locals.user.id }
         ]
-      }
+      },
+      include: [{ model: User },{ model: Pet }]
     })
     if (history) {
       return res.status(200).json({
@@ -64,6 +66,7 @@ async function createHistory(req, res) {
         score: req.body.score,
         comments: req.body.comments,
         volunteersId: req.body.volunteersId,
+        petId: req.body.petId,
         userId: user.id
       })
       return res.status(200).json({ message: 'History created' })
