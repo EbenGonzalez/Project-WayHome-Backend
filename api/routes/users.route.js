@@ -19,7 +19,7 @@ const {
 
 router.get('/', getAllUsers) 
 router.get('/me', checkAuth, getOwnProfile) 
-router.get('/:id', checkAuth, checkAdmin, getOneUser) /
+router.get('/:id', getOneUser) /
 router.post('/', checkAuth, checkAdmin, createUser) 
 router.put('/password', checkAuth, changePassword)
 router.put('/me', checkAuth, updateOwnProfile) 

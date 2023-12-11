@@ -14,12 +14,6 @@ const User = connection.define("user", {
     type: DataTypes.STRING,
     unique: true,
     allowNull: false,
-    validate: {
-      isEmail: true,
-      notNull: {
-        msg: "Please enter your mail",
-      },
-    },
   },
   password: {
     type: DataTypes.STRING,

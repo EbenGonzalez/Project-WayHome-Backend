@@ -55,6 +55,8 @@ async function getOwnHistory(req, res) {
   }
 }
 
+
+
 async function createHistory(req, res) {
   try {
     const user = await User.findByPk(res.locals.user.id)
