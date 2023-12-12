@@ -1,25 +1,29 @@
 const Pet = require('../models/pet.models')
 const User = require('../models/users.models')
+const Race = require('../models/races.models')
 
 async function getAllPets(req, res) {
   try {
-    const pet = await Pet.findAll(
-      {
-        where: req.query
-      })
+    const pet = await Pet.findAll({
+      where: req.query,
+      include: [{ model: Race }]
+    });
+
     if (pet) {
-      return res.status(200).json(pet)
+      return res.status(200).json(pet);
     } else {
       return res.status(404).send("No hemos encontrado ninguna mascota ");
     }
   } catch (error) {
-    res.status(500).send(message.error)
+    res.status(500).send(message.error);
   }
 }
 
 async function getOnePet(req, res) {
   try {
-    const pet = await Pet.findByPk(req.params.id)
+    const pet = await Pet.findByPk(req.params.id, {
+      include: [{ model: Race }]
+    })
 
     if (pet) {
       return res.status(200).json(pet)
@@ -31,21 +35,21 @@ async function getOnePet(req, res) {
   }
 }
 
-async function getOwnPets(req,res){
-	try {
-		const pet=await Pet.findAll({
-      where:{
-        userId:res.locals.user.id
+async function getOwnPets(req, res) {
+  try {
+    const pet = await Pet.findAll({
+      where: {
+        userId: res.locals.user.id
       }
     })
-    if (pet.length!==0) {
-      return res.status(200).json({ message: 'Estas son tus mascotas', pet})
+    if (pet.length !== 0) {
+      return res.status(200).json({ message: 'Estas son tus mascotas', pet })
     } else {
       return res.status(404).send('Todavia no tienes ninguna mascota')
     }
-	} catch (error) {
-		res.json(error)
-	}
+  } catch (error) {
+    res.json(error)
+  }
 }
 
 async function createPet(req, res) {
@@ -63,7 +67,7 @@ async function createOwnPet(req, res) {
     if (user) {
       const pet = await Pet.create(req.body)
       await pet.setUser(user)
-      return res.status(200).json({ message: 'Tu mascota ha sido añadida correctamente'})
+      return res.status(200).json({ message: 'Tu mascota ha sido añadida correctamente' })
     } else {
       return res.status(404).send('No se ha podido crear tu mascota')
     }
