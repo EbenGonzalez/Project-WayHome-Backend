@@ -25,7 +25,7 @@ router.get('/:id',checkAuth, checkAdmin, getOneComment)
 router.post('/me', checkAuth, createOwnComment)
 router.post('/', checkAuth, checkAdmin, createComment)
 router.put('/me/:id', checkAuth, updateOwnComment)
-router.put('/:id', checkAuth, checkAdmin, updateComment)
+router.put('/:id', checkAuth, updateComment)
 router.delete('/me/:id',checkAuth, deleteOwnComment)
 router.delete('/:id', checkAuth,checkAdmin, deleteComment)
 

@@ -40,7 +40,8 @@ async function getOwnPets(req, res) {
     const pet = await Pet.findAll({
       where: {
         userId: res.locals.user.id
-      }
+      },
+      include: [{ model: Race }]
     })
     if (pet.length !== 0) {
       return res.status(200).json({ message: 'Estas son tus mascotas', pet })
