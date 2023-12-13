@@ -36,7 +36,9 @@ async function getOwnComment(req, res) {
     const comment = await Comment.findAll({
       where: {
         receiver_id: res.locals.user.id,    //cambiar userId por receiver_id
-      }
+      },
+      include: [{ model: User }]
+      
     })
     if (comment) {
       return res.status(200).json({
@@ -56,7 +58,8 @@ async function getOwnCommentAuthor(req, res) {
     const comment = await Comment.findAll({
       where: {
         author_id: res.locals.user.id
-      }
+      },
+      include: [{ model: User }]
     })
     if (comment) {
       return res.status(200).json({

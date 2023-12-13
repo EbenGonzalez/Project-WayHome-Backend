@@ -20,11 +20,11 @@ const User = connection.define("user", {
     allowNull: false
   },
   background: {
-    type: DataTypes.BLOB,
+    type: DataTypes.STRING,
     allowNull: true
   },
   profile: {
-    type: DataTypes.BLOB,
+    type: DataTypes.STRING,
     allowNull: true
   },
   phone: {

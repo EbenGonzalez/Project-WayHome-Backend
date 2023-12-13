@@ -28,7 +28,7 @@ const Pet = connection.define("pet", {
     allowNull: true
   },
   image: {
-    type: DataTypes.BLOB,
+    type: DataTypes.STRING,
     allowNull: true
   },
   location: {
