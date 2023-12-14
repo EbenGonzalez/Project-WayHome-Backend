@@ -20,7 +20,7 @@ const User = connection.define("user", {
     allowNull: false
   },
   background: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: true
   },
   profile: {

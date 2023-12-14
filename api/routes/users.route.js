@@ -23,7 +23,7 @@ router.get('/:id', getOneUser) /
 router.post('/', checkAuth, checkAdmin, createUser) 
 router.put('/password', checkAuth, changePassword)
 router.put('/me', checkAuth, updateOwnProfile) 
-router.put('/:id', checkAuth, checkAdmin, updateUser) 
+router.put('/:id', checkAuth, updateUser) 
 router.delete('/me', checkAuth, deleteOwnProfile) 
 router.delete('/:id', checkAuth, checkAdmin, deleteUser)
 
