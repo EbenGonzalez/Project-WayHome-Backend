@@ -23,8 +23,8 @@ const Pet = connection.define("pet", {
     type: DataTypes.STRING,
     allowNull: true
   },
-  character: {
-    type: DataTypes.STRING,
+  likes: {
+    type: DataTypes.INTEGER,
     allowNull: true
   },
   image: {
