@@ -27,6 +27,10 @@ const User = connection.define("user", {
     type: DataTypes.STRING,
     allowNull: true
   },
+  gender: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
   phone: {
     type: DataTypes.INTEGER,
     allowNull: true
