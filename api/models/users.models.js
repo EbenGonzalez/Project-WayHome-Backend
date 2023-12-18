@@ -48,7 +48,7 @@ const User = connection.define("user", {
     allowNull: true
   },
   info: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(500),
     allowNull: true
   },
   media: {
