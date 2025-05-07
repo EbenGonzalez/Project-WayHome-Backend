@@ -1,73 +1,61 @@
-Project Christian-Eben-Roberto
+# 🐶🐱 WayHome
 
-# proyecto-final-backend way-home
+**WayHome** es una aplicación web que tiene como objetivo principal facilitar la interaccion entre usuarios que deseen poner en adopcion o acogida temporal a sus mascotas con voluntarios dispuestos a ello.
 
-# API
+## 🚀 Tecnologías utilizadas
 
-### Authentication Endpoints
+### 🧩 Frontend
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![JSX](https://img.shields.io/badge/JSX-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Material UI](https://img.shields.io/badge/Material--UI-007FFF?style=for-the-badge&logo=mui&logoColor=white)
 
-The Authentication flow for the application is:
 
-### User Signup/Login
+### 🛠️ Backend
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
+![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=sequelize&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)
 
-| METHOD | ENDPOINT     | TOKEN | ROLE | DESCRIPTION | POST PARAMS                                 | RETURNS            |
-| ------ | ------------ | ----- | ---- | ----------- | ------------------------------------------- | ------------------ |
-| POST   | /auth/signup | -     | user | User Signup | `firstName`,`lastName`, `email`, `password` | { token: `token` } |
-| POST   | /auth/login  | -     | user | User Login  | `email`, `password`                         | { token: `token` } |
+### 🗄️ Base de datos
+![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
+![TablePlus](https://img.shields.io/badge/TablePlus-FFCC00?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZDNzAwIiBoZWlnaHQ9IjI0IiB3aWR0aD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnL3N2ZyI+PHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiByeD0iNSIvPjwvc3ZnPg==&label=TablePlus)
 
-### User Endpoints 🧔
+### 🧰 Herramientas y control de versiones
+![VSCode](https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 
-| METHOD | ENDPOINT       | TOKEN | ROLE  | DESCRIPTION        | POST PARAMS                                                                                                                          | RETURNS                        |
-| ------ | -------------- | ----- | ----- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------ |
-| GET    | /user          | YES   | admin | Get All Users      | `query params`                                                                                                                       | [{user}]                       |
-| GET    | /user/me       | YES   | user  | Get Own Profile    |                                                                                                                                      | {user}                         |
-| GET    | /user/:userId  | YES   | admin | Get One User       |                                                                                                                                      | {user}                         |
-| POST   | /user          | YES   | admin | Create one user    | `firstName`,`lastName`, `email`, `password`, `phone`, `birth_Date`, `background`, `profile`, `address`, `location`, `info`, `media`, | {user}                         |
-| PUT    | /user/me       | YES   | user  | Update own profile | {body}                                                                                                                               | {message: 'Profile updated'}   |
-| PUT    | /user/password | YES   | user  | Reset password     | `newPassword` `repeatPassword`                                                                                                       | { message: 'Password updated } |
-| PUT    | /user/:userId  | YES   | admin | Update one user    | {body}                                                                                                                               | {message: 'User updated'}      |
-| DELETE | /user/:userId  | YES   | admin | Delete one user    |                                                                                                                                      | {message: 'User deleted'}      |
-| DELETE | /user/me       | YES   | user  | Delete own profile |                                                                                                                                      | { message: 'Profile deleted' } |
 
-### Pets Endpoints 🐱🐶
+## 🎯 Funcionalidades principales
 
-| METHOD | ENDPOINT        | TOKEN | ROLE  | DESCRIPTION         | POST PARAMS                                                                                        | RETURNS                                      |
-| ------ | --------------- | ----- | ----- | ------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| GET    | /pets           | -     | -     | See All Pets        | `query params`                                                                                     | [{ pets }]                                   |
-| GET    | /pets/:petId    | -     | -     | See one Pet Info    |                                                                                                    | { pet }                                      |
-| GET    | /pets/me   | -     | -     | See all own Pet Info    |                                                                                                    | [{ pets }]                                      |
-| POST   | /pets/me        | YES   | user  | Create Own pet Info | `name`, `role`, `userId`, `character`, `gender`, `size`, `info`, `location`, `{ image }`, `raceId` | { pets }                                     |
-| POST   | /pets           | YES   | admin | Create one pet      | { body }                                                                                           | {user}                                       |
-| PUT    | /pets/me        | YES   | user  | Update own pet Info | { body }                                                                                           | {message: 'Your Pet Info have been updated'} |
-| PUT    | /pets/:petId 🐈‍⬛ | YES   | admin | Update one pet      | { body }                                                                                           | {message: 'User updated'}                    |
-| DELETE | /pets/:petId 🐶 | YES   | admin | Delete one pet      |                                                                                                    | {message: 'User deleted'}                    |
-| DELETE | /pets/me        | YES   | user  | Delete own pet Info |                                                                                                    | {message: 'Your Pet Info have been deleted'} |
+- ⚙ Registro personalizado con posibilidad de elegir varios roles de usuario.
+- 🐶 Panel personalizado de mascotas.
+- ✉️ Mensajes directos entre usuarios.
+- ⭐️ Pagina de voluntarios disponibles con rating individual y mapa de localizacion.
+- 🐱 Pagina detallada de las mascotas con informacion e imagen personalizada y su estado actual.
+- 🔍 Filtros varios.
+- 🔒 Panel de control para administradores.
 
-### Comments Endpoints ☄️
 
-| METHOD | ENDPOINT               | TOKEN | ROLE  | DESCRIPTION                 | POST PARAMS    | RETURNS                                     |
-| ------ | ---------------------- | ----- | ----- | --------------------------- | -------------- | ------------------------------------------- |
-| GET    | /comment ☄️            | YES   | Admin | Get all Comments            | `query params` | [{comments}]                                |
-| GET    | /comment/inbox         | YES   | user  | Get own Comments (receiver) |                | [{comments}]                                |
-| GET    | /comment/send          | YES   | user  | Get own Comments (author)   |                | [{comments}]                                |
-| GET    | /comment/:commentId    | YES   | Admin | Get a specific Comment      |                | [{comments}]                                |
-| POST   | /comment/me            | YES   | user  | Create own comment          | `comment`      | {comment}                                   |
-| POST   | /comment               | YES   | Admin | Create a comment            | `comment`      | {comment}                                   |
-| PUT    | /comment/me/:commentId | YES   | user  | Update own comment          |                | {message: 'Your comment have been updated'} |
-| PUT    | /comment/:commentId    | YES   | Admin | Update a specific comment   |                | {message: 'The comment have been updated'}  |
-| DELETE | /comment/me/:commentId | YES   | user  | Delete own comment          |                | {message: 'Comment deleted'}                |
-| DELETE | /comment/:commentId    | YES   | Admin | Delete a specific comment   |                | {message: 'Comment deleted'}                |
+## 🖼️ Capturas de pantalla
 
-### History Endpoints 💟
+![Portada](projet-3/public/screenshots/2.jpg)
+![Mascotas](projet-3/public/screenshots/3.jpg)
+![Voluntarios](projet-3/public/screenshots/4.jpg)
+![Localizacion](projet-3/public/screenshots/5.jpg)
+![Mensajes](projet-3/public/screenshots/7.jpg)
 
-| Method | Endpoint        | Token Required | Role  | Description                          | Post Params      | Returns                                             |
-| ------ | --------------- | -------------- | ----- | ------------------------------------ | ---------------- | --------------------------------------------------- |
-| GET    | /history     | YES            | Admin | Get all ratings                      | `query params`   | [{history}]                                         |
-| GET    | /history/me     | YES            | User  | Get all my histories                 |                  | [{history}]                                         |
-| GET    | /history/me/:Id | YES            | User | Get a specific own History           |                  | {history}                                           |
-| GET    | /history/:Id    | YES            | Admin | Get a specific History               |                  | {history}                                           |
-| POST   | /history/me     | YES            | User  | Add a new history                    | `score, comment` | {history}                                           |
-| POST   | /history        | YES            | Admin | Add a new history                    | `score, comment` | {history}                                           |
-| PUT    | /history/me/:id | YES            | User  | Update an existing own history by ID | `score, comment` | {message: 'The history have been updated'}{history} |
-| PUT    | /history/:id    | YES            | Admin | Update an existing history by ID     | `score, comment` | {message: 'The history have been updated'}{history} |
-| DELETE | /history/:id    | YES            | Admin | Delete an existing history by ID     | `score, comment` | {message: 'History deleted'}                        |
+## 👨‍💻 Autor
+
+**Ebén González de la Cruz**
+
+📧 ebencito88@gmail.com
+
+🌐 https://github.com/EbenGonzalez
+
+💼 https://www.linkedin.com/in/ebendev/
