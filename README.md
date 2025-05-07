@@ -44,11 +44,11 @@
 
 ## 🖼️ Capturas de pantalla
 
-![Portada](projet-3/public/screenshots/2.jpg)
-![Mascotas](projet-3/public/screenshots/3.jpg)
-![Voluntarios](projet-3/public/screenshots/4.jpg)
-![Localizacion](projet-3/public/screenshots/5.jpg)
-![Mensajes](projet-3/public/screenshots/7.jpg)
+![Portada](/screenshots/2.jpg)
+![Mascotas](/screenshots/3.jpg)
+![Voluntarios](/screenshots/4.jpg)
+![Localizacion](/screenshots/5.jpg)
+![Mensajes](/screenshots/7.jpg)
 
 ## 👨‍💻 Autor
 
