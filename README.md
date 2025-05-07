@@ -23,7 +23,8 @@
 
 ### 🗄️ Base de datos
 ![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
-![TablePlus](https://img.shields.io/badge/TablePlus-FFCC00?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZDNzAwIiBoZWlnaHQ9IjI0IiB3aWR0aD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnL3N2ZyI+PHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiByeD0iNSIvPjwvc3ZnPg==&label=TablePlus)
+![TablePlus](https://img.shields.io/badge/TablePlus-FFCC00?style=for-the-badge&logoColor=black)
+
 
 ### 🧰 Herramientas y control de versiones
 ![VSCode](https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)
